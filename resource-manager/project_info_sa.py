@@ -2,13 +2,12 @@
 # 
 # $ mkvirtualenv rsrc-mgr-projinfo
 # $ pip install -r requirements.txt
-# $ gcloud init
-# <... choose your gcp account and project ...>
+# $ gcloud beta auth application-default login
+# <... your browser should open so you can login to gcp ...>
 # $ python project_info_sa.py
 
 from googleapiclient import discovery
 from oauth2client.client import GoogleCredentials
-
 
 def resource_mgr_service():
     credentials = GoogleCredentials.get_application_default()
@@ -26,7 +25,11 @@ def main():
       for project in response['projects']:
         policy_req = projects_api.getIamPolicy(resource=project['projectId'], body={})
         policy_res = policy_req.execute()
-        print '{0}: {1} bindings'.format(project['projectId'], len(policy_res['bindings']))
+        num_bindings = 0
+        if 'bindings' in policy_res:
+          num_bindings = len(policy_res['bindings'])
+
+        print '{0}: {1} bindings'.format(project['projectId'], num_bindings)
 
       proj_request = projects_api.list_next(previous_request=proj_request, previous_response=response)
 
