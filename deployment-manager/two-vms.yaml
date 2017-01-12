@@ -1,0 +1,18 @@
+imports:
+- path: vm-template-1.jinja
+- path: vm-template-2.jinja
+- path: firewall.jinja
+- path: network.jinja
+- path: app-env.jinja
+
+resources:
+- name: vm-1
+  type: vm-template-1.jinja
+- name: vm-2
+  type: vm-template-2.jinja
+- name: network-1
+  type: network.jinja
+- name: firewall-1
+  type: firewall.jinja
+- name: app-env
+  type: app-env.jinja
