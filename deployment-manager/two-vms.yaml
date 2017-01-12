@@ -3,7 +3,6 @@ imports:
 - path: vm-template-2.jinja
 - path: firewall.jinja
 - path: network.jinja
-- path: app-env.jinja
 
 resources:
 - name: vm-1
@@ -14,5 +13,3 @@ resources:
   type: network.jinja
 - name: firewall-1
   type: firewall.jinja
-- name: app-env
-  type: app-env.jinja
