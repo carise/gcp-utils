@@ -25,7 +25,7 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          sudo apt-get install git
+          sudo apt-get install -y git
           git clone https://github.com/carise/gcp-utils
           cd gcp-utils/deployment-manager
           python pipeline.py --project {{ env["project"] }}
