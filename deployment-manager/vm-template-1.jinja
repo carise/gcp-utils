@@ -1,3 +1,7 @@
+{#
+Startup script installs git, clones this repo, then runs the test pipeline.
+#}
+
 resources:
 - name: the-first-vm
   type: compute.v1.instance
@@ -21,4 +25,7 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          sudo python -m SimpleHTTPServer 80
+          sudo apt-get install git
+          git clone https://github.com/carise/gcp-utils
+          cd gcp-utils/deployment-manager
+          python pipeline.py --project {{ env["project"] }}
