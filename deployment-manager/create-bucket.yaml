@@ -1,0 +1,5 @@
+resources:
+- name: the-name-of-my-bucket
+  type: storage.v1.bucket
+  properties:
+    project: MY_PROJECT
