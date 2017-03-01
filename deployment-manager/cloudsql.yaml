@@ -1,0 +1,18 @@
+imports:
+- path: cloudsql.py
+- path: cloudsql-db.py
+
+resources:
+- name: cloudsql
+  type: cloudsql.py
+  properties:
+    instance-name: my-cloudsql-instance-03010951
+    region: us-central1
+- name: my_db
+  type: cloudsql-db.py
+
+outputs:
+- name: databaseName
+  value: my_db
+- name: dbProject
+  value: $(ref.my_db.project)
