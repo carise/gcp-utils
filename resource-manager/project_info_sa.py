@@ -35,9 +35,10 @@ def main():
                     if 'bindings' in policy_res:
                         num_bindings = len(policy_res['bindings'])
 
-                    print '{} ({}): {} IAM bindings'.format(
+                    print '{} ({}) - {}; {} IAM bindings'.format(
                         project['projectId'],
                         project['projectNumber'],
+                        project['lifecycleState'],
                         num_bindings)
                 except:
                     print 'Error getting IAM policy for {}'.format(project)
