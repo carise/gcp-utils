@@ -21,17 +21,20 @@ def main():
     projects_api = resources_projects(resource_mgr_service())
     proj_request = projects_api.list()
     while proj_request is not None:
-      response = proj_request.execute()
-      for project in response['projects']:
-        policy_req = projects_api.getIamPolicy(resource=project['projectId'], body={})
-        policy_res = policy_req.execute()
-        num_bindings = 0
-        if 'bindings' in policy_res:
-          num_bindings = len(policy_res['bindings'])
+        response = proj_request.execute()
+        for project in response['projects']:
+            policy_req = projects_api.getIamPolicy(
+                resource=project['projectId'], body={})
+            policy_res = policy_req.execute()
+            num_bindings = 0
+            if 'bindings' in policy_res:
+              num_bindings = len(policy_res['bindings'])
 
-        print '{0}: {1} bindings'.format(project['projectId'], num_bindings)
+            print '{} ({}): {} IAM bindings'.format(
+                project['projectId'], project['projectNumber'], num_bindings)
 
-      proj_request = projects_api.list_next(previous_request=proj_request, previous_response=response)
+        proj_request = projects_api.list_next(
+            previous_request=proj_request, previous_response=response)
 
 if __name__ == '__main__':
     main()
