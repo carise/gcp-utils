@@ -1,0 +1,20 @@
+# Refer to https://medium.com/google-cloud/infrastructure-as-code-on-google-cloud-platform-storage-buckets-40f09bfa4328 to get the service account's privateKeyData
+
+imports:
+- path: service_acct.py
+- path: service_acct_key.py
+
+resources:
+- name: my-service-acct-1
+  type: service_acct.py
+  properties:
+    displayName: "My Service Account 1"
+- name: my-service-acct-1-key
+  type: service_acct_key.py
+  properties:
+    parent: $(ref.my-service-acct-1.name)
+
+- name: my-service-acct-2
+  type: service_acct.py
+  properties:
+    displayName: "My Service Account 2"
