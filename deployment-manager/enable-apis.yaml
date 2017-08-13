@@ -1,0 +1,17 @@
+
+imports:
+- path: api.py
+
+resources:
+- name: project-apis
+  type: api.py
+  properties:
+    apis:
+    - iam.googleapis.com
+    - admin.googleapis.com
+    - appengine.googleapis.com
+    - cloudresourcemanager.googleapis.com
+    - sql-component.googleapis.com
+    - sqladmin.googleapis.com
+    - compute.googleapis.com
+    - deploymentmanager.googleapis.com
