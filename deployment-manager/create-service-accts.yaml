@@ -5,16 +5,24 @@ imports:
 - path: service_acct_key.py
 
 resources:
-- name: my-service-acct-1
+- name: primary-service-account
   type: service_acct.py
   properties:
+    accountId: forseti-security-0815004625
     displayName: "My Service Account 1"
 - name: my-service-acct-1-key
   type: service_acct_key.py
   properties:
-    parent: $(ref.my-service-acct-1.name)
+    parent: $(ref.primary-service-account.name)
 
-- name: my-service-acct-2
+- name: secondary-service-account
   type: service_acct.py
   properties:
+    accountId: my-service-acct-2
     displayName: "My Service Account 2"
+
+outputs:
+- name: PrimaryServiceAcct
+  value: $(ref.primary-service-account.email)
+- name: SecondaryServiceAcct
+  value: $(ref.secondary-service-account.email)

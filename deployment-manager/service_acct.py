@@ -9,7 +9,7 @@ def GenerateConfig(context):
         'properties': {
             'name': context.env['name'],
             'projectId': context.env['project'],
-            'accountId': context.env['name'],
+            'accountId': context.properties['accountId'],
             'displayName': context.properties['displayName']
         }
     })
